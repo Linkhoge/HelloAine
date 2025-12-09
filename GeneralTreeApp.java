@@ -1,7 +1,7 @@
 // Student Name     : Ariel Fajimiyo
 // Student Id Number: C00300811@setu.ie
-// Date             : 30/10/24
-// Purpose          : A test driver program for my Algorithms
+// Date             : 07/12/2025
+// Purpose          : A test driver program for my general tree implementation using arrays
 
 /*
    part 3 - general tree using arrays
