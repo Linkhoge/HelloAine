@@ -1,6 +1,6 @@
 // Student Name     : Ariel Fajimiyo
 // Student Id Number: C00300811@setu.ie
-// Date             : 07/12/2025
+// Date             : 07/12/25
 // Purpose          : A test driver program for my general tree implementation using arrays
 
 /*
@@ -14,6 +14,9 @@ class Node {
     int rightSibling;   // next sibling index
     int parent;         // parent index
 
+    /**
+     * creates a node for the general tree
+     */
     public Node(String data, int lmc, int rs, int p) {
         this.data = data;
         this.leftMostChild = lmc;
@@ -24,10 +27,13 @@ class Node {
 
 public class GeneralTreeApp {
 
-    // the tree stored here
+    // the tree stored here (array based LMC–RMS)
     static Node[] A = new Node[20];
     static int nodeCount;
 
+    /**
+     * main test driver for all tree operations
+     */
     public static void main(String[] args) {
 
         buildPrimatesTree();   // load test data
@@ -48,10 +54,13 @@ public class GeneralTreeApp {
         System.out.println(GetAncestor("Human"));
     }
 
-    // used to remember how many results were stored last time
+    // remembers how many items were added to the last result array
     static int lastR = 0;
 
-    // builds the classification tree
+    /**
+     * builds the primates classification tree
+     * using the LMC–RMS representation
+     */
     static void buildPrimatesTree() {
 
         // root
@@ -79,7 +88,9 @@ public class GeneralTreeApp {
         nodeCount = 12;
     }
 
-    // gets children or everything below
+    /**
+     * returns the direct children or all descendants of a species
+     */
     static String[] GetDescendants(String species, boolean includeAll) {
 
         String[] Result = new String[20];
@@ -104,7 +115,9 @@ public class GeneralTreeApp {
         return Result;
     }
 
-    // recursive helper
+    /**
+     * recursive helper that collects everything below a node
+     */
     static int GetAllBelow(int nodeIndex, String[] Result, int R) {
 
         int child = A[nodeIndex].leftMostChild;
@@ -120,7 +133,9 @@ public class GeneralTreeApp {
         return R;
     }
 
-    // gets siblings
+    /**
+     * returns all siblings of the given species
+     */
     static String[] GetRelatedSpecies(String species) {
 
         String[] Result = new String[20];
@@ -129,7 +144,7 @@ public class GeneralTreeApp {
         int index = FindIndex(species);
         int parent = A[index].parent;
 
-        if (parent == -1) { // -1 null check
+        if (parent == -1) { // -1 means no parent (root)
             lastR = R;
             return Result;
         }
@@ -149,7 +164,9 @@ public class GeneralTreeApp {
         return Result;
     }
 
-    // finds parent
+    /**
+     * returns the parent of a species, or null if it has none
+     */
     static String GetAncestor(String species) {
 
         int index = FindIndex(species);
@@ -161,7 +178,9 @@ public class GeneralTreeApp {
         return A[parent].data;
     }
 
-    // find index by name
+    /**
+     * finds the array index of a species name
+     */
     static int FindIndex(String species) {
 
         for (int i = 0; i < nodeCount; i++) {
@@ -173,7 +192,9 @@ public class GeneralTreeApp {
         return -1;
     }
 
-    // prints only the used part of the array
+    /**
+     * prints only the used part of a result array
+     */
     static void printArray(String[] arr, int size) {
 
         if (size == 0) {
